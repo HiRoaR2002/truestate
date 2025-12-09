@@ -1,0 +1,20 @@
+services:
+  # Backend Service
+  - type: web
+    name: sales-backend
+    env: docker
+    dockerContext: ./backend
+    plan: free
+    numInstances: 1
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        value: "5000"
+
+  # Frontend Service
+  - type: web
+    name: sales-frontend
+    env: docker
+    dockerContext: ./frontend
+    plan: free
+    numInstances: 1

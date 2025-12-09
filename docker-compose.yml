@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  sales-backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: sales-backend
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: sales-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - sales-backend
+    restart: unless-stopped
